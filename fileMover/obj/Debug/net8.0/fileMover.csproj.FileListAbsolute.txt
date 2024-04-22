@@ -1,0 +1,5 @@
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.AssemblyInfoInputs.cache
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.AssemblyInfo.cs
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.csproj.CoreCompileInputs.cache
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.sourcelink.json
