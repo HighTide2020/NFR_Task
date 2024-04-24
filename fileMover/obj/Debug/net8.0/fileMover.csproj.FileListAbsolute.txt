@@ -3,3 +3,13 @@
 /Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.AssemblyInfo.cs
 /Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.csproj.CoreCompileInputs.cache
 /Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.sourcelink.json
+/Users/nickcap/src/NFR_Task/fileMover/bin/Debug/net8.0/fileMover
+/Users/nickcap/src/NFR_Task/fileMover/bin/Debug/net8.0/fileMover.deps.json
+/Users/nickcap/src/NFR_Task/fileMover/bin/Debug/net8.0/fileMover.runtimeconfig.json
+/Users/nickcap/src/NFR_Task/fileMover/bin/Debug/net8.0/fileMover.dll
+/Users/nickcap/src/NFR_Task/fileMover/bin/Debug/net8.0/fileMover.pdb
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.dll
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/refint/fileMover.dll
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.pdb
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/fileMover.genruntimeconfig.cache
+/Users/nickcap/src/NFR_Task/fileMover/obj/Debug/net8.0/ref/fileMover.dll
