@@ -1,0 +1,26 @@
+uses
+  System.IOUtils;
+
+procedure MoveFiles(const SourceFiles: TArray<string>; const DestinationFolder: string);
+var
+  SourceFile, DestinationFile: string;
+begin
+  for SourceFile in SourceFiles do
+  begin
+    // Construct destination file path
+    DestinationFile := TPath.Combine(DestinationFolder, TPath.GetFileName(SourceFile));
+
+    try
+      // Move the file
+      TFile.Move(SourceFile, DestinationFile);
+      // Optionally, you can provide feedback to the user here
+      // e.g., ShowMessage('File moved successfully');
+    except
+      on E: Exception do
+      begin
+        // Handle any exceptions that occur during file moving
+        // e.g., ShowMessage('Error moving file: ' + E.Message);
+      end;
+    end;
+  end;
+end;
