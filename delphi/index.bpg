@@ -1,0 +1,109 @@
+unit FileMover;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.FileCtrl;
+
+type
+  TFormFileMover = class(TForm)
+    TimerFileCheck: TTimer;
+    procedure FormCreate(Sender: TObject);
+    procedure TimerFileCheckTimer(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    SourceDirectory: string;
+    DestinationDirectory: string;
+    LogFileName: string;
+    procedure MoveFiles;
+    procedure LogFirstLine(const FilePath: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  FormFileMover: TFormFileMover;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormFileMover.FormCreate(Sender: TObject);
+begin
+  // Load settings from configuration file or set default values
+  SourceDirectory := 'C:\Source';
+  DestinationDirectory := 'C:\Destination';
+  LogFileName := 'file_mover.log';
+
+  // Ensure directories exist
+  ForceDirectories(SourceDirectory);
+  ForceDirectories(DestinationDirectory);
+
+  // Start monitoring the source directory
+  TimerFileCheck.Interval := 1000; // Check every 1 second
+  TimerFileCheck.Enabled := True;
+end;
+
+procedure TFormFileMover.FormDestroy(Sender: TObject);
+begin
+  TimerFileCheck.Enabled := False;
+end;
+
+procedure TFormFileMover.TimerFileCheckTimer(Sender: TObject);
+begin
+  MoveFiles;
+end;
+
+procedure TFormFileMover.MoveFiles;
+var
+  SearchRec: TSearchRec;
+begin
+  if FindFirst(SourceDirectory + '\*.*', faAnyFile, SearchRec) = 0 then
+  begin
+    repeat
+      if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
+      begin
+        // Move the file to the destination directory
+        if RenameFile(SourceDirectory + '\' + SearchRec.Name, DestinationDirectory + '\' + SearchRec.Name) then
+        begin
+          // Log if it's a text file
+          if SameText(ExtractFileExt(SearchRec.Name), '.txt') then
+            LogFirstLine(DestinationDirectory + '\' + SearchRec.Name);
+        end
+        else
+        begin
+          // Handle error
+        end;
+      end;
+    until FindNext(SearchRec) <> 0;
+    FindClose(SearchRec);
+  end;
+end;
+
+procedure TFormFileMover.LogFirstLine(const FilePath: string);
+var
+  TextFile: TextFile;
+  FirstLine: string;
+begin
+  try
+    AssignFile(TextFile, FilePath);
+    Reset(TextFile);
+    try
+      ReadLn(TextFile, FirstLine);
+      // Log the first line into the log file
+      Append(LogFileName);
+      try
+        Writeln(LogFileName, 'First line of ', ExtractFileName(FilePath), ': ', FirstLine);
+      finally
+        CloseFile(LogFileName);
+      end;
+    finally
+      CloseFile(TextFile);
+    end;
+  except
+    // Handle error
+  end;
+end;
+
+end.
