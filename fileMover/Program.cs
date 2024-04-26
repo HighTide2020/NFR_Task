@@ -1,12 +1,5 @@
-﻿// namespace fileMover;
+﻿namespace fileMover;
 
-// class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         Console.WriteLine("Hello, World!");
-//     }
-// }
 using System;
 using System.IO;
 
